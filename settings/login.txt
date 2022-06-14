@@ -1,0 +1,6 @@
+=== id, password를 메모하기 위한 파일이며, 마음대로 수정해도 상관없습니다 ===
+eschoi
+it580=vt
+
+jkim
+dx108?qw

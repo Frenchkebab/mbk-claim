@@ -1,0 +1,7 @@
+__pycache__
+build
+dist
+result
+upload
+dist.zip
+main.spec
