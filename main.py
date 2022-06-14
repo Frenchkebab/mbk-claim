@@ -62,22 +62,22 @@ def toClaimX(driver):
 def login(driver, id, password):
     # id 입력
     idForm = driver.find_element(by=By.XPATH, value="/html/body/table/tbody/tr[3]/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/form/table/tbody/tr[1]/td[2]/input")
-    # idForm.send_keys(id)
-    # time.sleep(0.5)
+    idForm.send_keys(id)
+    time.sleep(0.5)
 
     # password 입력
     pwForm = driver.find_element(by=By.XPATH, value="/html/body/table/tbody/tr[3]/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/form/table/tbody/tr[2]/td[2]/input")
-    # pwForm.send_keys(password)
+    pwForm.send_keys(password)
 
     ## clipboard 사용하여 입력
-    clipboard.copy(id)
-    idForm.click()
-    pyautogui.hotkey('ctrl', 'v')
-    time.sleep(0.5)
+    # clipboard.copy(id)
+    # idForm.click()
+    # pyautogui.hotkey('ctrl', 'v')
+    # time.sleep(0.5)
 
-    clipboard.copy(password)
-    pwForm.click()
-    pyautogui.hotkey('ctrl', 'v')
+    # clipboard.copy(password)
+    # pwForm.click()
+    # pyautogui.hotkey('ctrl', 'v')
     
     print(f"'{id}'")
     print(f"'{password}'")
