@@ -1,11 +1,12 @@
 # input파일 처리 라이브러리
-import columns
 import pandas as pd
 import os
 import openpyxl
 from email import policy
 from email.parser import BytesParser
 from glob import glob
+
+from column import column
 
 def attributeWrite(file_name):
     
@@ -14,7 +15,7 @@ def attributeWrite(file_name):
     sheet = wb.worksheets[0]
 
     for i in range (1, 25):
-        sheet.cell(row = 5, column = i).value = columns.column[f"{i}"]
+        sheet.cell(row = 5, column = i).value = column[f"{i}"]
 
     wb.save(f"./upload/{file_name}")
     wb.close()
@@ -29,23 +30,23 @@ def userInput():
     file_name = f.readline().split(':')[1].strip()              # 파일 이름
     start_idx = int(f.readline().split(':')[1].strip()) - 1     # 시작 인덱스
     last_idx = int(f.readline().split(':')[1].strip()) - 1      # 마지막 인덱스
-    minMinute = int(f.readline().split(':')[1].strip())         # 최소 시간
-    maxMinute = int(f.readline().split(':')[1].strip())         # 최대 시간
+    minSecond = int(f.readline().split(':')[1].strip())         # 최소 시간
+    maxSecond = int(f.readline().split(':')[1].strip())         # 최대 시간
     f.close()
     
     # 변수 여러개 묶어서 리턴
-    user_input = [id, password, work_type, file_name, start_idx, last_idx, minMinute, maxMinute]
+    user_input = [id, password, work_type, file_name, start_idx, last_idx, minSecond, maxSecond]
     return user_input
 
-def printUserInput(id, password, work_type, file_name, start_idx, last_idx, minMinute, maxMinute):
+def printUserInput(id, password, work_type, file_name, start_idx, last_idx, minSecond, maxSecond):
     print(f"아이디 : {id}")
     print(f"패스워드 : {password}")
     print(f"작업 종류: {work_type}")
     print(f"파일 이름: {file_name}")
     print(f"시작 No.: {start_idx + 1}")
     print(f"마지막 No.: {last_idx + 1}")
-    print(f"최소 대기시간(분) : {minMinute}")
-    print(f"최대 대기시간(분) : {maxMinute}")
+    print(f"최소 대기시간(초) : {minSecond}")
+    print(f"최대 대기시간(초) : {maxSecond}")
 
 def readXslx(file_name):
     df = pd.read_excel(f'./upload/{file_name}',
