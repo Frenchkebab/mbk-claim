@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait as wait
 import datetime
 
 
@@ -98,18 +99,45 @@ def clickClaim(driver):
     # claim 버튼 클릭
     driver.find_element(by=By.XPATH, value='/html/body/table/tbody/tr[1]/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[1]/tbody/tr/td[1]/table/tbody/tr/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a').click()
 
-def memo(file_name, row, msg):
+def uploadFileNumCheck(fileList):
+
+    # fileList에서 파악한 총 파일 개수를 더함
+    fileCount = 0
+    for file in fileList:
+        fileCount += len(file)
+
+    return fileCount
+
+def uploadedFileNumCheck(driver):
+    print('test: uploadedFileNumbChecker 들어옴')
+    wait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, '/html/body/table/tbody/tr[3]/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[17]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a'))).click()
+    print('test: 화면 리프레시완료')
+    uploadedFileNum = wait(driver, 20).until(EC.presence_of_element_located((By.XPATH, '//*[@id="mainpart"]/table[6]/tbody/tr[2]/td[2]'))).get_attribute('innerText').strip()
+    print('test: ', uploadedFileNum)
+    return int(uploadedFileNum)
+
+def memo(file_name, row, msg, archiveError=False):
+
     # 엑셀 파일 오픈
     wb = openpyxl.load_workbook(f"./upload/{file_name}")
 
     # 시트 설정
     sheet = wb.worksheets[0]
+    sheet.cell(row = 5 + int(row["No."]), column = 24).value = msg
 
+    
+    # Memo 작성
     if row == 0:
         sheet.cell(row = 5, column = 24).value = msg
     else:
         # cid값 저장
         sheet.cell(row = 5 + int(row["No."]), column = 24).value = msg
+
+
+    # archiveError가 있는 경우 Memo 옆에 표시해둠
+    if archiveError:
+        print("memo 인")
+        sheet.cell(row = 5 + int(row["No."]), column = 25).value = "Upload Error"
 
     # 파일 저장 후 닫기
     wb.save(f"./upload/{file_name}")
@@ -169,8 +197,9 @@ def query(driver, row):
     cidForm.send_keys(Keys.ENTER)
 
     driver.implicitly_wait(30)
-    tdTag = driver.find_element(by=By.XPATH, value='//*[@id="show_header_reference"]/table/tbody/tr/td/b')
-    tdTag.find_element(by=By.TAG_NAME, value='')
+    wait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="mainpart"]/form/table/tbody/tr[2]'))).click()
+    # tdTag = driver.find_element(by=By.XPATH, value='//*[@id="mainpart"]/form/table/tbody/tr[2]')
+    # tdTag.find_element(by=By.TAG_NAME, value='')
     # uploadBtn.click()
 
     ### Vehicle Logistics에서 submit한 후의 화면이 나타난다!
@@ -205,8 +234,7 @@ def uploadArchive(driver,logFile, fileList, selectionList):
 
             # file selection 클릭
             driver.implicitly_wait(5)
-            fileSelection = driver.find_element(by=By.XPATH, value='//*[@id="mainpart"]/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/img')
-            print('Button found')
+            fileSelection = driver.find_element(by=By.XPATH, value='//*[@id="actions"]/div[1]/span')
             fileSelection.click()
             time.sleep(2)
 
@@ -531,13 +559,14 @@ def VehicleLogistics(driver, file_name, row):
     # return
     return True
 
-def archive(driver, logFile, row):
+def archive(driver, logFile, row, archiveError = False):
     # archive 버튼 클릭
     driver.find_element(by=By.LINK_TEXT, value="archive").click()
     waitLoading()
 
     # 파일 버튼 클릭
-    driver.find_element(by=By.XPATH, value='//*[@id="mainpart"]/table[4]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/img').click()
+    # driver.find_element(by=By.XPATH, value='//*[@id="mainpart"]/table[4]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/img').click()
+    wait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="mainpart"]/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/img'))).click()
     waitLoading()
 
     # 팝업 창으로
@@ -569,7 +598,29 @@ def archive(driver, logFile, row):
     fileList = [fRO, fBL, fPicture, fLiabilityNotice, fClaimSummary, fEmail, fList]
     selectionList = [sRO, sBL, sPicture, sLiabilityNotice, sClaimSummary, sEmail, sList]
 
+    # 실제 업로드 로직
     uploadArchive(driver, logFile, fileList, selectionList)
+
+    print("업로드까지는 완료됨")
+
+    # 파악된 파일 개수
+    uploadFileNum = uploadFileNumCheck(fileList)
+
+    # 최종 업로드된 파일 개수
+    uploadedFileNum = uploadedFileNumCheck(driver)
+
+    # 업로드 상태 확인
+
+    ## 파일의 개수가 안맞는 경우
+    if uploadedFileNum != uploadFileNum:
+        print("문제1")
+        return True
+
+    ## 파일의 개수가 9개 이하인 경우
+    if uploadedFileNum < 9:
+        print("문제2")
+        return True      
+    
 
     # Claim summary = notification of the claim
     # E-mail = Incoming correspondence from claimant
@@ -794,6 +845,9 @@ toClaimX(driver)
 input("Login and press enter: ")
 # login(driver, id, password)
 
+# Archive 업로드 중 문제가 생기는 경우 True
+archiveError = False
+
 # 작업 종류 선택
 if work_type == "mbk":
     for row in dataArr:
@@ -802,6 +856,10 @@ if work_type == "mbk":
             print(f"========================{row['No.']}번째 줄========================")
             logFile.write(f"{row}\n\n")
             print(f"{row}\n")
+
+            # 업로드 에러 flag 초기화
+            archiveError = False
+
             #* claim 버튼 클릭
             clickClaim(driver)
 
@@ -818,23 +876,25 @@ if work_type == "mbk":
                 else:
                     continue
 
-                archive(driver, logFile, row)
-                memo(file_name, row, "Archive done")
+                # Archive
+                archiveError = archive(driver, logFile, row)
+                memo(file_name, row, "Archive done", archiveError)
                 logFile.write("Archive 완료\n")
                 print("Archive 완료")
 
+                # Claim
                 claim(driver)
                 memo(file_name, row, "Claim done")
                 logFile.write("Claim 완료\n")
                 print("Claim 완료")
 
-
+                # Receipts
                 receipts(driver, row)
                 memo(file_name, row, "Receipts done")
                 logFile.write("Receipts 완료\n")
                 print("Receipts 완료")
 
-
+                # Status
                 status(driver)
                 memo(file_name, row, "finished")
                 logFile.write(f"{row['No.']}번 라인 입력 완료\n")
