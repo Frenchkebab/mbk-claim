@@ -109,11 +109,8 @@ def uploadFileNumCheck(fileList):
     return fileCount
 
 def uploadedFileNumCheck(driver):
-    print('test: uploadedFileNumbChecker 들어옴')
     wait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, '/html/body/table/tbody/tr[3]/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[17]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a'))).click()
-    print('test: 화면 리프레시완료')
     uploadedFileNum = wait(driver, 20).until(EC.presence_of_element_located((By.XPATH, '//*[@id="mainpart"]/table[6]/tbody/tr[2]/td[2]'))).get_attribute('innerText').strip()
-    print('test: ', uploadedFileNum)
     return int(uploadedFileNum)
 
 def memo(file_name, row, msg, archiveError=False):
@@ -136,7 +133,7 @@ def memo(file_name, row, msg, archiveError=False):
 
     # archiveError가 있는 경우 Memo 옆에 표시해둠
     if archiveError:
-        print("memo 인")
+        print("Archive Error Memo")
         sheet.cell(row = 5 + int(row["No."]), column = 25).value = "Upload Error"
 
     # 파일 저장 후 닫기
@@ -345,7 +342,11 @@ def readXslx(file_name):
                                             "Damage Code03": str,
                                             "Damage Code04": str,
                                             "Damage Code05": str,
-                                            "Damage Code05": str,
+                                            "Damage Code06": str,
+                                            "Damage Code07": str,
+                                            "Damage Code08": str,
+                                            "Damage Code09": str,
+                                            "Damage Code010": str,
                                             "Sub Total": str,
                                             "Date of booking": str,
                                             "Reclamation date": str,
@@ -508,15 +509,44 @@ def VehicleLogistics(driver, file_name, row):
     driver.find_element(by=By.NAME, value="subfield_schzeit_year").send_keys(iYear)
 
     # claim type
-    Select(driver.find_element(by=By.NAME, value="field_sart")).select_by_value("D01")
-    time.sleep(0.5)
-    
-    # route section/cause
-    Select(driver.find_element(by=By.NAME, value="field_sber")).select_by_value("131")
-    time.sleep(0.5)
-    Select(driver.find_element(by=By.NAME, value="field_surs")).select_by_value("C00")
-    time.sleep(0.5)
-    
+
+    for i in range(1, 11):
+        # damage code 마지막 6인지 검사
+        if i < 10:
+            dCode = str(row[f"Damage Code0{i}"])
+        else:
+            dCode = str(row[f"Damage Code{i}"])
+        
+        # 없으면 반복 중지
+        if dCode == "nan":
+            break
+
+        # 마지막 자리가 6인 경우
+        if dCode.strip()[-1] == "6":
+            # claim type (normal)
+            Select(driver.find_element(by=By.NAME, value="field_sart")).select_by_value("180")
+            time.sleep(0.5)
+            
+            # route section/cause (normmal)
+            Select(driver.find_element(by=By.NAME, value="field_sber")).select_by_value("131") # matariel damage
+            time.sleep(0.5)
+            Select(driver.find_element(by=By.NAME, value="field_surs")).select_by_value("037") # partial theft
+            time.sleep(0.5)
+            
+
+        # 마지막 자리 6 아닌 경우 (normal case)
+        else:
+            # claim type (normal)
+            Select(driver.find_element(by=By.NAME, value="field_sart")).select_by_value("D01")
+            time.sleep(0.5)
+            
+            # route section/cause (normmal)
+            Select(driver.find_element(by=By.NAME, value="field_sber")).select_by_value("131")
+            time.sleep(0.5)
+            Select(driver.find_element(by=By.NAME, value="field_surs")).select_by_value("C00")
+            time.sleep(0.5)
+
+
     # claimant's reference
     driver.find_element(by=By.NAME, value="field_ansprref").send_keys(row["Repair No."])
     time.sleep(0.5)
@@ -601,7 +631,6 @@ def archive(driver, logFile, row, archiveError = False):
     # 실제 업로드 로직
     uploadArchive(driver, logFile, fileList, selectionList)
 
-    print("업로드까지는 완료됨")
 
     # 파악된 파일 개수
     uploadFileNum = uploadFileNumCheck(fileList)
@@ -613,12 +642,12 @@ def archive(driver, logFile, row, archiveError = False):
 
     ## 파일의 개수가 안맞는 경우
     if uploadedFileNum != uploadFileNum:
-        print("문제1")
+        print("올라간 파일 수와 올릴 파일 수가 다릅니다")
         return True
 
     ## 파일의 개수가 9개 이하인 경우
     if uploadedFileNum < 9:
-        print("문제2")
+        print("업로드된 파일의 수가 9개 미만입니다")
         return True      
     
 
