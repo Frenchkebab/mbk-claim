@@ -7,6 +7,16 @@ from email import policy
 from email.parser import BytesParser
 from glob import glob
 
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait as wait
+import datetime
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.by import By
+
 def attributeWrite(file_name):
     
     wb = openpyxl.load_workbook(f"./upload/{file_name}")
@@ -29,23 +39,23 @@ def userInput():
     file_name = f.readline().split(':')[1].strip()              # 파일 이름
     start_idx = int(f.readline().split(':')[1].strip()) - 1     # 시작 인덱스
     last_idx = int(f.readline().split(':')[1].strip()) - 1      # 마지막 인덱스
-    minMinute = int(f.readline().split(':')[1].strip())         # 최소 시간
-    maxMinute = int(f.readline().split(':')[1].strip())         # 최대 시간
+    minSecond = int(f.readline().split(':')[1].strip())         # 최소 시간
+    maxSecond = int(f.readline().split(':')[1].strip())         # 최대 시간
     f.close()
     
     # 변수 여러개 묶어서 리턴
-    user_input = [id, password, work_type, file_name, start_idx, last_idx, minMinute, maxMinute]
+    user_input = [id, password, work_type, file_name, start_idx, last_idx, minSecond, maxSecond]
     return user_input
 
-def printUserInput(id, password, work_type, file_name, start_idx, last_idx, minMinute, maxMinute):
+def printUserInput(id, password, work_type, file_name, start_idx, last_idx, minSecond, maxSecond):
     print(f"아이디 : {id}")
     print(f"패스워드 : {password}")
     print(f"작업 종류: {work_type}")
     print(f"파일 이름: {file_name}")
     print(f"시작 No.: {start_idx + 1}")
     print(f"마지막 No.: {last_idx + 1}")
-    print(f"최소 대기시간(분) : {minMinute}")
-    print(f"최대 대기시간(분) : {maxMinute}")
+    print(f"최소 대기시간(초) : {minSecond}")
+    print(f"최대 대기시간(초) : {maxSecond}")
 
 def readXslx(file_name):
     df = pd.read_excel(f'./upload/{file_name}',
@@ -64,7 +74,11 @@ def readXslx(file_name):
                                             "Damage Code03": str,
                                             "Damage Code04": str,
                                             "Damage Code05": str,
-                                            "Damage Code05": str,
+                                            "Damage Code06": str,
+                                            "Damage Code07": str,
+                                            "Damage Code08": str,
+                                            "Damage Code09": str,
+                                            "Damage Code010": str,
                                             "Sub Total": str,
                                             "Date of booking": str,
                                             "Reclamation date": str,
@@ -102,6 +116,23 @@ def searchFileName(dirName, row):
                 result.append(f"{dirAbsPath}\\{file}")
         
     return result
+
+def doesBLContainMolu(dirName, row):
+    currentAbsPath = os.path.dirname(os.path.realpath(__file__))
+    dirAbsPath = currentAbsPath + f"\\upload\\{dirName}"
+    fileList = os.listdir(dirAbsPath)
+
+    # Example:
+    # 'W1N9M0JB1PN028391_MOLU18004491675' -> returns True
+    for file in fileList:
+        if file.startswith(row["VIN No."]):
+            fileNameStrings = file.split("_")
+            return fileNameStrings[1].startswith("MOLU")
+
+
+    
+
+
 
 def searchEmail(row):
     # 해당 VIN No.와 동일한 EMAIL파일의 경로를 찾는다.
