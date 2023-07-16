@@ -1,5 +1,5 @@
 import time
-from random import random, randint
+from random import random
 
 def sleep_timer_second(min, max):
     range = max - min

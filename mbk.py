@@ -15,11 +15,9 @@ import openpyxl
 import pyautogui
 import clipboard
 
+from timer import waitLoading
 from inputFunctions import *
 from common import *
-from timer import *
-
-
 
 def VehicleLogistics(driver, file_name, row):
     # vehicle-logistics로 이동
@@ -108,7 +106,7 @@ def VehicleLogistics(driver, file_name, row):
         pass
 
     # carrier
-    if(doesBLContainMolu("BL", row)):
+    if doesBLContainMolu("BL", row):
         carrier = driver.find_element(by=By.NAME, value="field_tuse")
         carrier.send_keys("mitsui")
         carrier.send_keys(Keys.ENTER)
@@ -116,6 +114,16 @@ def VehicleLogistics(driver, file_name, row):
         waitLoading()
         driver.find_element(by=By.XPATH, value="/html/body/table[2]/tbody/tr/td[1]/input").send_keys(Keys.ENTER) # '+' 버튼 클릭
         driver.switch_to.window(driver.window_handles[0])
+
+    elif isHyundaiGlovis("BL", row):
+        carrier = driver.find_element(by=By.NAME, value="field_tuse")
+        carrier.send_keys("HYUNDAI GLOVIS")
+        carrier.send_keys(Keys.ENTER)
+        driver.switch_to.window(driver.window_handles[1])
+        waitLoading()
+        driver.find_element(by=By.XPATH, value="/html/body/table[2]/tbody/tr/td[1]/input").send_keys(Keys.ENTER) # '+' 버튼 클릭
+        driver.switch_to.window(driver.window_handles[0])
+
     else:
         carrier = driver.find_element(by=By.NAME, value="field_tuse")
         carrier.send_keys("eukor")
@@ -213,10 +221,14 @@ def VehicleLogistics(driver, file_name, row):
 
     # 5-digit-code
     for i in range(1, 11):
+
+        
         if i < 10:
             dCode = str(row[f"Damage Code0{i}"])
         else:
             dCode = str(row[f"Damage Code{i}"])
+            
+        print(f"Damage Code{i}: {dCode}")
         
         # 없으면 반복 중지
         if dCode == "nan":
@@ -226,6 +238,15 @@ def VehicleLogistics(driver, file_name, row):
             waitLoading()
             driver.find_element(by=By.NAME, value="speichern_ccode").click()
             waitLoading()
+            driver.implicitly_wait(30)
+            
+            try:
+                driver.find_element(by=By.XPATH, value='//*[@id="mainpart"]/ul/li')
+                memo(file_name, row, f"damage code{i} wrong")
+                print(f"Damage Code{i} 오류")
+                return False
+            except:
+                pass
 
     # submit
     driver.find_element(by=By.NAME, value="speichern").click() # submit 버튼 클릭
@@ -256,7 +277,7 @@ def archive(driver, logFile, row, archiveError = False):
     sBL = "B/L"
 
     fPicture = searchFileName("PICTURE", row)
-    sPicture = "Pictures vehicle damage"
+    sPicture = "damage photo"
 
     fLiabilityNotice = searchFileName("LIABILITY NOTICE", row)
     sLiabilityNotice = "notice of liability, resp. objection to notice of liability"

@@ -25,7 +25,7 @@
         "documentation": {}
     },
     {
-        "label": "*",
+        "label": "waitLoading",
         "importPath": "timer",
         "description": "timer",
         "isExtraImport": true,
@@ -406,14 +406,6 @@
     },
     {
         "label": "random",
-        "importPath": "random",
-        "description": "random",
-        "isExtraImport": true,
-        "detail": "random",
-        "documentation": {}
-    },
-    {
-        "label": "randint",
         "importPath": "random",
         "description": "random",
         "isExtraImport": true,
@@ -855,6 +847,15 @@
         "importPath": "inputFunctions",
         "description": "inputFunctions",
         "peekOfCode": "def doesBLContainMolu(dirName, row):\n    currentAbsPath = os.path.dirname(os.path.realpath(__file__))\n    dirAbsPath = currentAbsPath + f\"\\\\upload\\\\{dirName}\"\n    fileList = os.listdir(dirAbsPath)\n    # Example:\n    # 'W1N9M0JB1PN028391_MOLU18004491675' -> returns True\n    for file in fileList:\n        if file.startswith(row[\"VIN No.\"]):\n            fileNameStrings = file.split(\"_\")\n            return fileNameStrings[1].startswith(\"MOLU\")",
+        "detail": "inputFunctions",
+        "documentation": {}
+    },
+    {
+        "label": "isHyundaiGlovis",
+        "kind": 2,
+        "importPath": "inputFunctions",
+        "description": "inputFunctions",
+        "peekOfCode": "def isHyundaiGlovis(dirName, row):\n    currentAbsPath = os.path.dirname(os.path.realpath(__file__))\n    dirAbsPath = currentAbsPath + f\"\\\\upload\\\\{dirName}\"\n    fileList = os.listdir(dirAbsPath)\n    # Example:\n    # 'W1K1K5KB3PF200197_HDGLMXKR0523894A' -> returns True\n    for file in fileList:\n        if file.startswith(row[\"VIN No.\"]):\n            fileNameStrings = file.split(\"_\")\n            return fileNameStrings[1].startswith(\"HDGLMXKR\")",
         "detail": "inputFunctions",
         "documentation": {}
     },

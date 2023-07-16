@@ -129,7 +129,17 @@ def doesBLContainMolu(dirName, row):
             fileNameStrings = file.split("_")
             return fileNameStrings[1].startswith("MOLU")
 
+def isHyundaiGlovis(dirName, row):
+    currentAbsPath = os.path.dirname(os.path.realpath(__file__))
+    dirAbsPath = currentAbsPath + f"\\upload\\{dirName}"
+    fileList = os.listdir(dirAbsPath)
 
+    # Example:
+    # 'W1K1K5KB3PF200197_HDGLMXKR0523894A' -> returns True
+    for file in fileList:
+        if file.startswith(row["VIN No."]):
+            fileNameStrings = file.split("_")
+            return fileNameStrings[1].startswith("HDGLMXKR")
     
 
 
