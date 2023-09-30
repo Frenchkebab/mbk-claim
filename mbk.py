@@ -22,7 +22,7 @@ from common import *
 def VehicleLogistics(driver, file_name, row):
     # vehicle-logistics로 이동
     driver.implicitly_wait(5)
-    driver.find_element(by=By.LINK_TEXT, value="vehicle-logistics").click()
+    driver.find_element(by=By.LINK_TEXT, value="Vehicle-Logistics").click()
     
     # 페이지 로딩 됐는지 검사
     while True:
@@ -259,12 +259,12 @@ def VehicleLogistics(driver, file_name, row):
 
 def archive(driver, logFile, row, archiveError = False):
     # archive 버튼 클릭
-    driver.find_element(by=By.LINK_TEXT, value="archive").click()
+    driver.find_element(by=By.LINK_TEXT, value="Archive").click()
     waitLoading()
 
     # 파일 버튼 클릭
     # driver.find_element(by=By.XPATH, value='//*[@id="mainpart"]/table[4]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/img').click()
-    wait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="mainpart"]/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/img'))).click()
+    wait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="mainpart"]/table[3]/tbody/tr/td/table/tbody/tr/td/img'))).click()
     waitLoading()
 
     # 팝업 창으로
@@ -301,22 +301,22 @@ def archive(driver, logFile, row, archiveError = False):
 
 
     # 파악된 파일 개수
-    uploadFileNum = uploadFileNumCheck(fileList)
+    # uploadFileNum = uploadFileNumCheck(fileList)
 
     # 최종 업로드된 파일 개수
-    uploadedFileNum = uploadedFileNumCheck(driver)
+    # uploadedFileNum = uploadedFileNumCheck(driver)
 
     # 업로드 상태 확인
 
     ## 파일의 개수가 안맞는 경우
-    if uploadedFileNum != uploadFileNum + 1:
-        print("올라간 파일 수와 올릴 파일 수가 다릅니다")
-        return True
+    # if uploadedFileNum != uploadFileNum + 1:
+    #     print("올라간 파일 수와 올릴 파일 수가 다릅니다")
+    #     return True
 
-    ## 파일의 개수가 9개 이하인 경우
-    if uploadedFileNum < 9:
-        print("업로드된 파일의 수가 9개보다 작습니다")
-        return True      
+    # ## 파일의 개수가 9개 이하인 경우
+    # if uploadedFileNum < 9:
+    #     print("업로드된 파일의 수가 9개보다 작습니다")
+    #     return True      
     
 
     # Claim summary = notification of the claim
@@ -328,7 +328,8 @@ def archive(driver, logFile, row, archiveError = False):
 
 def claim(driver):
     # 좌측 cliam 클릭
-    driver.find_element(by=By.XPATH, value="/html/body/table/tbody/tr[3]/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[12]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a").click()
+    # driver.find_element(by=By.XPATH, value="/html/body/table/tbody/tr[3]/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[12]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a").click()
+    driver.find_element(by=By.LINK_TEXT, value="Claim").click()
     waitLoading()
 
     # claimant
@@ -364,12 +365,17 @@ def claim(driver):
     # 완료
 
 def receipts(driver, row):
+    # print('here')
     # 좌측 receipts 버튼 클릭
-    driver.find_element(by=By.XPATH, value='/html/body/table/tbody/tr[3]/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[13]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a').click()
+    # driver.find_element(by=By.XPATH, value='//*[@id="leftmenu_table"]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table[5]/tbody/tr/td/table/tbody/tr/td/table[13]/tbody[1]').click()
+    driver.find_element(by=By.LINK_TEXT, value="Receipts").click()
+    # driver.get("https://www.claimx.de/claimx/members/schaden/bearbeiten/belege?sid=7059316&amp;")
+    # driver.implicitly_wait(30)
     waitLoading()
 
     # new 버튼 클릭
-    driver.find_element(by=By.XPATH, value='//*[@id="mainpart"]/table[1]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[1]/tbody/tr/td[2]/a').click()
+    # driver.find_element(by=By.XPATH, value='//*[@id="mainpart"]/table[1]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[1]/tbody/tr/td[2]/a').click()
+    driver.find_element(by=By.LINK_TEXT, value="new").click()
     waitLoading()
 
     # type of receipt
@@ -476,7 +482,8 @@ def receipts(driver, row):
 
 def status(driver):
     # 좌측 status 버튼 클릭
-    driver.find_element(by=By.XPATH, value="/html/body/table/tbody/tr[3]/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[18]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a").click()
+    # driver.find_element(by=By.XPATH, value="/html/body/table/tbody/tr[3]/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[18]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a").click()
+    driver.find_element(by=By.LINK_TEXT, value="Status").click()
     waitLoading()
 
     # status

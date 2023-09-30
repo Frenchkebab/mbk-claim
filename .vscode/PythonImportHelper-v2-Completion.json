@@ -1,14 +1,5 @@
 [
     {
-        "label": "timer",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "timer",
-        "description": "timer",
-        "detail": "timer",
-        "documentation": {}
-    },
-    {
         "label": "*",
         "importPath": "timer",
         "description": "timer",
@@ -92,30 +83,6 @@
         "documentation": {}
     },
     {
-        "label": "webdriver",
-        "importPath": "selenium",
-        "description": "selenium",
-        "isExtraImport": true,
-        "detail": "selenium",
-        "documentation": {}
-    },
-    {
-        "label": "By",
-        "importPath": "selenium.webdriver.common.by",
-        "description": "selenium.webdriver.common.by",
-        "isExtraImport": true,
-        "detail": "selenium.webdriver.common.by",
-        "documentation": {}
-    },
-    {
-        "label": "By",
-        "importPath": "selenium.webdriver.common.by",
-        "description": "selenium.webdriver.common.by",
-        "isExtraImport": true,
-        "detail": "selenium.webdriver.common.by",
-        "documentation": {}
-    },
-    {
         "label": "By",
         "importPath": "selenium.webdriver.common.by",
         "description": "selenium.webdriver.common.by",
@@ -212,30 +179,6 @@
         "documentation": {}
     },
     {
-        "label": "Select",
-        "importPath": "selenium.webdriver.support.ui",
-        "description": "selenium.webdriver.support.ui",
-        "isExtraImport": true,
-        "detail": "selenium.webdriver.support.ui",
-        "documentation": {}
-    },
-    {
-        "label": "WebDriverWait",
-        "importPath": "selenium.webdriver.support.ui",
-        "description": "selenium.webdriver.support.ui",
-        "isExtraImport": true,
-        "detail": "selenium.webdriver.support.ui",
-        "documentation": {}
-    },
-    {
-        "label": "WebDriverWait",
-        "importPath": "selenium.webdriver.support.ui",
-        "description": "selenium.webdriver.support.ui",
-        "isExtraImport": true,
-        "detail": "selenium.webdriver.support.ui",
-        "documentation": {}
-    },
-    {
         "label": "WebDriverWait",
         "importPath": "selenium.webdriver.support.ui",
         "description": "selenium.webdriver.support.ui",
@@ -281,14 +224,6 @@
         "description": "selenium.webdriver.support.ui",
         "isExtraImport": true,
         "detail": "selenium.webdriver.support.ui",
-        "documentation": {}
-    },
-    {
-        "label": "expected_conditions",
-        "importPath": "selenium.webdriver.support",
-        "description": "selenium.webdriver.support",
-        "isExtraImport": true,
-        "detail": "selenium.webdriver.support",
         "documentation": {}
     },
     {
@@ -346,22 +281,6 @@
         "description": "selenium.webdriver",
         "isExtraImport": true,
         "detail": "selenium.webdriver",
-        "documentation": {}
-    },
-    {
-        "label": "ActionChains",
-        "importPath": "selenium.webdriver",
-        "description": "selenium.webdriver",
-        "isExtraImport": true,
-        "detail": "selenium.webdriver",
-        "documentation": {}
-    },
-    {
-        "label": "Keys",
-        "importPath": "selenium.webdriver.common.keys",
-        "description": "selenium.webdriver.common.keys",
-        "isExtraImport": true,
-        "detail": "selenium.webdriver.common.keys",
         "documentation": {}
     },
     {
@@ -594,7 +513,7 @@
         "kind": 2,
         "importPath": "common",
         "description": "common",
-        "peekOfCode": "def toClaimX(driver):\n    driver.get(\"https://www.claimx.de/claimx\")\n    driver.implicitly_wait(60 * 20)\n# def login(driver, id, password):\n#     # id 입력\n#     driver.find_element_by_xpath(\"/html/body/table/tbody/tr[3]/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/form/table/tbody/tr[1]/td[2]/input\").send_keys(id)\n#     time.sleep(0.5)\n#     # password 입력\n#     driver.find_element_by_xpath(\"/html/body/table/tbody/tr[3]/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/form/table/tbody/tr[2]/td[2]/input\").send_keys(password)\n#     # 로그인 버튼 클릭",
+        "peekOfCode": "def toClaimX(driver):\n    driver.get(\"https://www.claimx.de/claimx\")\n    driver.implicitly_wait(60 * 20)\n# def login(driver, id, password):\n#     # id 입력\n#     driver.find_element(by=By.XPATH, value=\"/html/body/table/tbody/tr[3]/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/form/table/tbody/tr[1]/td[2]/input\").send_keys(id)\n#     time.sleep(0.5)\n#     # password 입력\n#     driver.find_element(by=By.XPATH, value=\"/html/body/table/tbody/tr[3]/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/form/table/tbody/tr[2]/td[2]/input\").send_keys(password)\n#     # 로그인 버튼 클릭",
         "detail": "common",
         "documentation": {}
     },
@@ -603,7 +522,7 @@
         "kind": 2,
         "importPath": "common",
         "description": "common",
-        "peekOfCode": "def clickClaim(driver):\n    # claim 버튼 클릭\n    driver.find_element_by_xpath('/html/body/table/tbody/tr[1]/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[1]/tbody/tr/td[1]/table/tbody/tr/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a').click()\ndef memo(file_name, row, msg):\n    # 엑셀 파일 오픈\n    wb = openpyxl.load_workbook(f\"./upload/{file_name}\")\n    # 시트 설정\n    sheet = wb.worksheets[0]\n    if row == 0:\n        sheet.cell(row = 5, column = 24).value = msg",
+        "peekOfCode": "def clickClaim(driver):\n    # claim 버튼 클릭\n    driver.find_element(by=By.XPATH, value='/html/body/table/tbody/tr[1]/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[1]/tbody/tr/td[1]/table/tbody/tr/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a').click()\ndef memo(file_name, row, msg):\n    # 엑셀 파일 오픈\n    wb = openpyxl.load_workbook(f\"./upload/{file_name}\")\n    # 시트 설정\n    sheet = wb.worksheets[0]\n    if row == 0:\n        sheet.cell(row = 5, column = 24).value = msg",
         "detail": "common",
         "documentation": {}
     },
@@ -621,7 +540,7 @@
         "kind": 2,
         "importPath": "common",
         "description": "common",
-        "peekOfCode": "def writeLog(logFile, msg):\n    logFile.write(f\"{msg}\\n\")\n# from random import random, randint\n#     # policy/type of insurance\n#     Select(driver.find_element_by_name(\"field_police\")).select_by_value(\"30109636-06154-2021\")\n#     Select(driver.find_element_by_name(\"field_kzvers\")).select_by_value(\"CL08\")\n#     # estimated/amount claimed\n#     total = row[\"Sub Total\"]\n#     driver.find_element_by_name(\"field_fordmsw\").send_keys(total)\n#     Select(driver.find_element_by_name(\"field_qmsts\")).select_by_value(\"034\")",
+        "peekOfCode": "def writeLog(logFile, msg):\n    logFile.write(f\"{msg}\\n\")\n# from random import random, randint\n#     # policy/type of insurance\n#     Select(driver.find_element(by=By.NAME, value=\"field_police\")).select_by_value(\"30109636-06154-2021\")\n#     Select(driver.find_element(by=By.NAME, value=\"field_kzvers\")).select_by_value(\"CL08\")\n#     # estimated/amount claimed\n#     total = row[\"Sub Total\"]\n#     driver.find_element(by=By.NAME, value=\"field_fordmsw\").send_keys(total)\n#     Select(driver.find_element(by=By.NAME, value=\"field_qmsts\")).select_by_value(\"034\")",
         "detail": "common",
         "documentation": {}
     },
@@ -630,7 +549,7 @@
         "kind": 2,
         "importPath": "common",
         "description": "common",
-        "peekOfCode": "def archive(driver, logFile, row):\n    # archive 버튼 클릭\n    driver.find_element_by_link_text(\"archive\").click()\n    waitLoading()\n    # 파일 버튼 클릭\n    driver.find_element_by_xpath('//*[@id=\"mainpart\"]/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/img').click()\n    waitLoading()\n    # 팝업 창으로\n    driver.switch_to.window(driver.window_handles[1])\n    fRO = searchFileName(\"RO\", row)",
+        "peekOfCode": "def archive(driver, logFile, row):\n    # archive 버튼 클릭\n    driver.find_element_by_link_text(\"archive\").click()\n    waitLoading()\n    # 파일 버튼 클릭\n    driver.find_element(by=By.XPATH, value='//*[@id=\"mainpart\"]/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/img').click()\n    waitLoading()\n    # 팝업 창으로\n    driver.switch_to.window(driver.window_handles[1])\n    fRO = searchFileName(\"RO\", row)",
         "detail": "common",
         "documentation": {}
     },
@@ -639,7 +558,7 @@
         "kind": 2,
         "importPath": "common",
         "description": "common",
-        "peekOfCode": "def claim(driver):\n    # 좌측 cliam 클릭\n    driver.find_element_by_xpath(\"/html/body/table/tbody/tr[3]/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[12]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a\").click()\n    waitLoading()\n    # claimant\n    claimant = driver.find_element_by_name(\"field_ansprse\")\n    claimant.send_keys(\"Mercedes-Benz Korea\")\n    time.sleep(0.5)\n    claimant.send_keys(Keys.ENTER)\n    # 팝업 창",
+        "peekOfCode": "def claim(driver):\n    # 좌측 cliam 클릭\n    driver.find_element(by=By.XPATH, value=\"/html/body/table/tbody/tr[3]/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[12]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a\").click()\n    waitLoading()\n    # claimant\n    claimant = driver.find_element(by=By.NAME, value=\"field_ansprse\")\n    claimant.send_keys(\"Mercedes-Benz Korea\")\n    time.sleep(0.5)\n    claimant.send_keys(Keys.ENTER)\n    # 팝업 창",
         "detail": "common",
         "documentation": {}
     },
@@ -648,7 +567,7 @@
         "kind": 2,
         "importPath": "common",
         "description": "common",
-        "peekOfCode": "def receipts(driver, row):\n    # 좌측 receipts 버튼 클릭\n    driver.find_element_by_xpath('/html/body/table/tbody/tr[3]/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[13]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a').click()\n    waitLoading()\n    # new 버튼 클릭\n    driver.find_element_by_xpath('//*[@id=\"mainpart\"]/table[1]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[1]/tbody/tr/td[2]/a').click()\n    waitLoading()\n    # type of receipt\n    select = Select(driver.find_element_by_name(\"field_bel\"))\n    select.select_by_value(\"RK\")",
+        "peekOfCode": "def receipts(driver, row):\n    # 좌측 receipts 버튼 클릭\n    driver.find_element(by=By.XPATH, value='/html/body/table/tbody/tr[3]/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[13]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a').click()\n    waitLoading()\n    # new 버튼 클릭\n    driver.find_element(by=By.XPATH, value='//*[@id=\"mainpart\"]/table[1]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[1]/tbody/tr/td[2]/a').click()\n    waitLoading()\n    # type of receipt\n    select = Select(driver.find_element(by=By.NAME, value=\"field_bel\"))\n    select.select_by_value(\"RK\")",
         "detail": "common",
         "documentation": {}
     },
@@ -657,7 +576,7 @@
         "kind": 2,
         "importPath": "common",
         "description": "common",
-        "peekOfCode": "def status(driver):\n    # 좌측 status 버튼 클릭\n    driver.find_element_by_xpath(\"/html/body/table/tbody/tr[3]/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[18]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a\").click()\n    waitLoading()\n    # status\n    typeOfProcedure = Select(driver.find_element_by_name(\"field_sst\"))\n    typeOfProcedure.select_by_value(\"B\")\n    # submit\n    driver.find_element_by_name(\"Abschicken\").click()\n    waitLoading()",
+        "peekOfCode": "def status(driver):\n    # 좌측 status 버튼 클릭\n    driver.find_element(by=By.XPATH, value=\"/html/body/table/tbody/tr[3]/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[18]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a\").click()\n    waitLoading()\n    # status\n    typeOfProcedure = Select(driver.find_element(by=By.NAME, value=\"field_sst\"))\n    typeOfProcedure.select_by_value(\"B\")\n    # submit\n    driver.find_element(by=By.NAME, value=\"Abschicken\").click()\n    waitLoading()",
         "detail": "common",
         "documentation": {}
     },
@@ -693,7 +612,7 @@
         "kind": 2,
         "importPath": "common",
         "description": "common",
-        "peekOfCode": "def clickClaim(driver):\n    # claim 버튼 클릭\n    driver.find_element(by=By.XPATH, value='/html/body/table/tbody/tr[1]/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[1]/tbody/tr/td[1]/table/tbody/tr/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a').click()\ndef uploadFileNumCheck(fileList):\n    # fileList에서 파악한 총 파일 개수를 더함\n    fileCount = 0\n    for file in fileList:\n        fileCount += len(file)\n    return fileCount\ndef uploadedFileNumCheck(driver):",
+        "peekOfCode": "def clickClaim(driver):\n    # claim 버튼 클릭\n    # driver.find_element(by=By.XPATH, value='/html/body/table/tbody/tr[1]/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[1]/tbody/tr/td[1]/table/tbody/tr/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a').click()\n    driver.find_element(by=By.LINK_TEXT, value=\"CLAIM\").click()\ndef uploadFileNumCheck(fileList):\n    # fileList에서 파악한 총 파일 개수를 더함\n    fileCount = 0\n    for file in fileList:\n        fileCount += len(file)\n    return fileCount",
         "detail": "common",
         "documentation": {}
     },
@@ -747,7 +666,7 @@
         "kind": 2,
         "importPath": "common",
         "description": "common",
-        "peekOfCode": "def query(driver, row):\n    driver.implicitly_wait(3)\n    driver.find_element(by=By.LINK_TEXT, value=\"query\").click() # query 버튼 클릭\n    waitLoading()\n    vinForm = driver.find_element(by=By.NAME, value=\"field_akrefitem\")\n    vinForm.clear()\n    time.sleep(0.5)\n    cidForm = driver.find_element(by=By.NAME, value=\"field_aksiditem\")\n    cidForm.clear()\n    time.sleep(1)",
+        "peekOfCode": "def query(driver, row):\n    driver.implicitly_wait(3)\n    driver.find_element(by=By.LINK_TEXT, value=\"QUERY\").click() # query 버튼 클릭\n    waitLoading()\n    vinForm = driver.find_element(by=By.NAME, value=\"field_akrefitem\")\n    vinForm.clear()\n    time.sleep(0.5)\n    cidForm = driver.find_element(by=By.NAME, value=\"field_aksiditem\")\n    cidForm.clear()\n    time.sleep(1)",
         "detail": "common",
         "documentation": {}
     },
@@ -756,7 +675,7 @@
         "kind": 2,
         "importPath": "common",
         "description": "common",
-        "peekOfCode": "def getCid(file_name, driver, row):\n    # 텍스트 클릭\n    line = driver.find_element(by=By.XPATH, value='//*[@id=\"show_header_reference\"]/table/tbody/tr/td/b').get_attribute('innerText')\n    line = line.strip()\n    # cid 값 변수 저장\n    cid = line[-7:]\n    # 엑셀 파일 오픈\n    wb = openpyxl.load_workbook(f\"./upload/{file_name}\")\n    # 시트 설정\n    sheet = wb.worksheets[0]",
+        "peekOfCode": "def getCid(file_name, driver, row):\n    # 텍스트 클릭\n    line = driver.find_element(by=By.XPATH, value='//*[@id=\"show_header_reference\"]/table[1]/tbody/tr/td[1]/div').get_attribute('innerText')\n    line = line.strip()\n    # cid 값 변수 저장\n    cid = line[-7:]\n    # 엑셀 파일 오픈\n    wb = openpyxl.load_workbook(f\"./upload/{file_name}\")\n    # 시트 설정\n    sheet = wb.worksheets[0]",
         "detail": "common",
         "documentation": {}
     },
@@ -783,7 +702,7 @@
         "kind": 5,
         "importPath": "emailTest",
         "description": "emailTest",
-        "peekOfCode": "file_list = list(glob(f\"{currentAbsPath}/upload/EMAIL/*.eml\"))\nfor file in file_list:\n    with open(file, 'rb') as fp:\n        msg = BytesParser(policy=policy.default).parse(fp)\n        txt = msg.get_body(preferencelist=('plain')).get_content()\n        if txt.find(\"W1K3F4EB4MJ319419\") > -1:\n            print(type(file))\n# for file in emlFiles:\n#     with open(file, 'rb') as fp:\n#         print(fp.read())",
+        "peekOfCode": "file_list = list(glob(f\"{currentAbsPath}/upload/EMAIL/*.eml\"))\nfor file in file_list:\n    with open(file, 'rb') as fp:\n        msg = BytesParser(policy=policy.default).parse(fp)\n        txt = msg.get_body(preferencelist=('plain')).get_content()\n        if txt.find(\"W1K3F4EB4MJ319419\") > -1:\n            print(type(file))\n# for file in emlFiles:\n#     with open(file, 'rb') as fp:\n#         print(fp.read())``",
         "detail": "emailTest",
         "documentation": {}
     },
@@ -1026,7 +945,7 @@
         "kind": 2,
         "importPath": "mbk",
         "description": "mbk",
-        "peekOfCode": "def VehicleLogistics(driver, file_name, row):\n    # vehicle-logistics로 이동\n    driver.implicitly_wait(5)\n    driver.find_element(by=By.LINK_TEXT, value=\"vehicle-logistics\").click()\n    # 페이지 로딩 됐는지 검사\n    while True:\n        try: \n            driver.find_element(by=By.ID, value=\"meldfn\")\n            # 있으면 탈출\n            break",
+        "peekOfCode": "def VehicleLogistics(driver, file_name, row):\n    # vehicle-logistics로 이동\n    driver.implicitly_wait(5)\n    driver.find_element(by=By.LINK_TEXT, value=\"Vehicle-Logistics\").click()\n    # 페이지 로딩 됐는지 검사\n    while True:\n        try: \n            driver.find_element(by=By.ID, value=\"meldfn\")\n            # 있으면 탈출\n            break",
         "detail": "mbk",
         "documentation": {}
     },
@@ -1035,7 +954,7 @@
         "kind": 2,
         "importPath": "mbk",
         "description": "mbk",
-        "peekOfCode": "def archive(driver, logFile, row, archiveError = False):\n    # archive 버튼 클릭\n    driver.find_element(by=By.LINK_TEXT, value=\"archive\").click()\n    waitLoading()\n    # 파일 버튼 클릭\n    # driver.find_element(by=By.XPATH, value='//*[@id=\"mainpart\"]/table[4]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/img').click()\n    wait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id=\"mainpart\"]/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/img'))).click()\n    waitLoading()\n    # 팝업 창으로\n    driver.switch_to.window(driver.window_handles[1])",
+        "peekOfCode": "def archive(driver, logFile, row, archiveError = False):\n    # archive 버튼 클릭\n    driver.find_element(by=By.LINK_TEXT, value=\"Archive\").click()\n    waitLoading()\n    # 파일 버튼 클릭\n    # driver.find_element(by=By.XPATH, value='//*[@id=\"mainpart\"]/table[4]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/img').click()\n    wait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id=\"mainpart\"]/table[3]/tbody/tr/td/table/tbody/tr/td/img'))).click()\n    waitLoading()\n    # 팝업 창으로\n    driver.switch_to.window(driver.window_handles[1])",
         "detail": "mbk",
         "documentation": {}
     },
@@ -1044,7 +963,7 @@
         "kind": 2,
         "importPath": "mbk",
         "description": "mbk",
-        "peekOfCode": "def claim(driver):\n    # 좌측 cliam 클릭\n    driver.find_element(by=By.XPATH, value=\"/html/body/table/tbody/tr[3]/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[12]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a\").click()\n    waitLoading()\n    # claimant\n    claimant = driver.find_element(by=By.NAME, value=\"field_ansprse\")\n    claimant.send_keys(\"Mercedes-Benz Korea\")\n    time.sleep(0.5)\n    claimant.send_keys(Keys.ENTER)\n    # 팝업 창",
+        "peekOfCode": "def claim(driver):\n    # 좌측 cliam 클릭\n    # driver.find_element(by=By.XPATH, value=\"/html/body/table/tbody/tr[3]/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[12]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a\").click()\n    driver.find_element(by=By.LINK_TEXT, value=\"Claim\").click()\n    waitLoading()\n    # claimant\n    claimant = driver.find_element(by=By.NAME, value=\"field_ansprse\")\n    claimant.send_keys(\"Mercedes-Benz Korea\")\n    time.sleep(0.5)\n    claimant.send_keys(Keys.ENTER)",
         "detail": "mbk",
         "documentation": {}
     },
@@ -1053,7 +972,7 @@
         "kind": 2,
         "importPath": "mbk",
         "description": "mbk",
-        "peekOfCode": "def receipts(driver, row):\n    # 좌측 receipts 버튼 클릭\n    driver.find_element(by=By.XPATH, value='/html/body/table/tbody/tr[3]/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[13]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a').click()\n    waitLoading()\n    # new 버튼 클릭\n    driver.find_element(by=By.XPATH, value='//*[@id=\"mainpart\"]/table[1]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[1]/tbody/tr/td[2]/a').click()\n    waitLoading()\n    # type of receipt\n    select = Select(driver.find_element(by=By.NAME, value=\"field_bel\"))\n    select.select_by_value(\"RK\")",
+        "peekOfCode": "def receipts(driver, row):\n    # print('here')\n    # 좌측 receipts 버튼 클릭\n    # driver.find_element(by=By.XPATH, value='//*[@id=\"leftmenu_table\"]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table[5]/tbody/tr/td/table/tbody/tr/td/table[13]/tbody[1]').click()\n    driver.find_element(by=By.LINK_TEXT, value=\"Receipts\").click()\n    # driver.get(\"https://www.claimx.de/claimx/members/schaden/bearbeiten/belege?sid=7059316&amp;\")\n    # driver.implicitly_wait(30)\n    waitLoading()\n    # new 버튼 클릭\n    # driver.find_element(by=By.XPATH, value='//*[@id=\"mainpart\"]/table[1]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[1]/tbody/tr/td[2]/a').click()",
         "detail": "mbk",
         "documentation": {}
     },
@@ -1062,7 +981,7 @@
         "kind": 2,
         "importPath": "mbk",
         "description": "mbk",
-        "peekOfCode": "def status(driver):\n    # 좌측 status 버튼 클릭\n    driver.find_element(by=By.XPATH, value=\"/html/body/table/tbody/tr[3]/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[18]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a\").click()\n    waitLoading()\n    # status\n    typeOfProcedure = Select(driver.find_element(by=By.NAME, value=\"field_sst\"))\n    typeOfProcedure.select_by_value(\"B\")\n    # submit\n    driver.find_element(by=By.NAME, value=\"Abschicken\").click()\n    waitLoading()",
+        "peekOfCode": "def status(driver):\n    # 좌측 status 버튼 클릭\n    # driver.find_element(by=By.XPATH, value=\"/html/body/table/tbody/tr[3]/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[18]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a\").click()\n    driver.find_element(by=By.LINK_TEXT, value=\"Status\").click()\n    waitLoading()\n    # status\n    typeOfProcedure = Select(driver.find_element(by=By.NAME, value=\"field_sst\"))\n    typeOfProcedure.select_by_value(\"B\")\n    # submit\n    driver.find_element(by=By.NAME, value=\"Abschicken\").click()",
         "detail": "mbk",
         "documentation": {}
     },

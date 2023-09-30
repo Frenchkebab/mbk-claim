@@ -5,15 +5,15 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait as wait
 import datetime
 
-from selenium.webdriver import ActionChains
+# from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
-import time
-import openpyxl
+# import time
+# import openpyxl
 
-import pyautogui
-import clipboard
+# import pyautogui
+# import clipboard
 
 from inputFunctions import *
 from common import *
@@ -24,7 +24,7 @@ from timer import *
 import inputFunctions
 import mbk
 import common
-import timer
+# import timer
 
 ########################## main.py #########################################
 
@@ -168,21 +168,22 @@ if work_type == "mbk":
                     logFile.write("Receipts 완료\n")
                     print("Receipts 완료")
 
-                    status(driver)
+                    mbk.status(driver)
                     memo(file_name, row, "finished")
                     logFile.write(f"{row['No.']}번 라인 입력 완료\n")
                     print(f"{row['No.']}번 라인 입력 완료")
 
                 elif str(row["Memo"]) == "Claim done":
-                    "Receipts 입력부터 시작"
+                    logFile.write("Receipts 입력부터 시작\n")
+                    print("Receipts 입력부터 시작")
                     query(driver, row)
 
-                    receipts(driver, row)
+                    mbk.receipts(driver, row)
                     memo(file_name, row, "Receipts done")
                     logFile.write("Receipts 완료\n")
                     print("Receipts 완료")
 
-                    status(driver)
+                    mbk.status(driver)
                     memo(file_name, row, "finished")
                     logFile.write(f"{row['No.']}번 라인 입력 완료\n")
                     print(f"{row['No.']}번 라인 입력 완료")
@@ -192,7 +193,7 @@ if work_type == "mbk":
                     print("status 입력부터 시작")
                     query(driver, row)
 
-                    status(driver)
+                    mbk.status(driver)
                     memo(file_name, row, "finished")
                     logFile.write(f"{row['No.']}번 라인 입력 완료\n")
                     print(f"{row['No.']}번 라인 입력 완료")

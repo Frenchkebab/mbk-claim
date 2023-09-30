@@ -23,25 +23,25 @@ def toClaimX(driver):
 
 # def login(driver, id, password):
 #     # id 입력
-#     driver.find_element_by_xpath("/html/body/table/tbody/tr[3]/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/form/table/tbody/tr[1]/td[2]/input").send_keys(id)
+#     driver.find_element(by=By.XPATH, value="/html/body/table/tbody/tr[3]/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/form/table/tbody/tr[1]/td[2]/input").send_keys(id)
 #     time.sleep(0.5)
 
 #     # password 입력
-#     driver.find_element_by_xpath("/html/body/table/tbody/tr[3]/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/form/table/tbody/tr[2]/td[2]/input").send_keys(password)
+#     driver.find_element(by=By.XPATH, value="/html/body/table/tbody/tr[3]/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/form/table/tbody/tr[2]/td[2]/input").send_keys(password)
     
 #     # 로그인 버튼 클릭
-#     driver.find_element_by_xpath("/html/body/table/tbody/tr[3]/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/form/table/tbody/tr[3]/td/input").click()
+#     driver.find_element(by=By.XPATH, value="/html/body/table/tbody/tr[3]/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/form/table/tbody/tr[3]/td/input").click()
 
 #     # 문 버튼이 나타나면 클릭, 없으면 그냥 패스
 #     try:
-#         driver.find_element_by_xpath("/html/body/table/tbody/tr[3]/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a[1]/img").click()
+#         driver.find_element(by=By.XPATH, value="/html/body/table/tbody/tr[3]/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a[1]/img").click()
 
 #     except:
 #         pass
 
 def clickClaim(driver):
     # claim 버튼 클릭
-    driver.find_element_by_xpath('/html/body/table/tbody/tr[1]/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[1]/tbody/tr/td[1]/table/tbody/tr/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a').click()
+    driver.find_element(by=By.XPATH, value='/html/body/table/tbody/tr[1]/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[1]/tbody/tr/td[1]/table/tbody/tr/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a').click()
 
 def memo(file_name, row, msg):
     # 엑셀 파일 오픈
@@ -66,17 +66,17 @@ def writeLog(logFile, msg):
 # from random import random, randint
 
 #     # policy/type of insurance
-#     Select(driver.find_element_by_name("field_police")).select_by_value("30109636-06154-2021")
-#     Select(driver.find_element_by_name("field_kzvers")).select_by_value("CL08")
+#     Select(driver.find_element(by=By.NAME, value="field_police")).select_by_value("30109636-06154-2021")
+#     Select(driver.find_element(by=By.NAME, value="field_kzvers")).select_by_value("CL08")
 
 #     # estimated/amount claimed
 #     total = row["Sub Total"]
-#     driver.find_element_by_name("field_fordmsw").send_keys(total)
-#     Select(driver.find_element_by_name("field_qmsts")).select_by_value("034")
+#     driver.find_element(by=By.NAME, value="field_fordmsw").send_keys(total)
+#     Select(driver.find_element(by=By.NAME, value="field_qmsts")).select_by_value("034")
 #     time.sleep(0.5)
 
 #     # Q-Dome claim?
-#     driver.find_element_by_name("field_qdome").click()
+#     driver.find_element(by=By.NAME, value="field_qdome").click()
 #     time.sleep(0.5)
 
 #     # 5-digit-code
@@ -90,13 +90,13 @@ def writeLog(logFile, msg):
 #         if dCode == "nan":
 #             break
 #         else:
-#             driver.find_element_by_name("field_cteilnr").send_keys(dCode)
+#             driver.find_element(by=By.NAME, value="field_cteilnr").send_keys(dCode)
 #             waitLoading()
-#             driver.find_element_by_name("speichern_ccode").click()
+#             driver.find_element(by=By.NAME, value="speichern_ccode").click()
 #             waitLoading()
 
 #     # submit
-#     driver.find_element_by_name("speichern").click() # submit 버튼 클릭
+#     driver.find_element(by=By.NAME, value="speichern").click() # submit 버튼 클릭
 #     driver.implicitly_wait(60 * 20)
 #     waitLoading()
 
@@ -109,7 +109,7 @@ def archive(driver, logFile, row):
     waitLoading()
 
     # 파일 버튼 클릭
-    driver.find_element_by_xpath('//*[@id="mainpart"]/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/img').click()
+    driver.find_element(by=By.XPATH, value='//*[@id="mainpart"]/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/img').click()
     waitLoading()
 
     # 팝업 창으로
@@ -152,11 +152,11 @@ def archive(driver, logFile, row):
 
 def claim(driver):
     # 좌측 cliam 클릭
-    driver.find_element_by_xpath("/html/body/table/tbody/tr[3]/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[12]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a").click()
+    driver.find_element(by=By.XPATH, value="/html/body/table/tbody/tr[3]/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[12]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a").click()
     waitLoading()
 
     # claimant
-    claimant = driver.find_element_by_name("field_ansprse")
+    claimant = driver.find_element(by=By.NAME, value="field_ansprse")
     claimant.send_keys("Mercedes-Benz Korea")
     time.sleep(0.5)
     claimant.send_keys(Keys.ENTER)
@@ -166,7 +166,7 @@ def claim(driver):
     waitLoading()
 
     # + 버튼 클릭
-    driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[1]/td[1]/input").click()
+    driver.find_element(by=By.XPATH, value="/html/body/table[2]/tbody/tr[1]/td[1]/input").click()
     driver.implicitly_wait(10)
 
     # 창 닫혔는지 검사
@@ -182,27 +182,27 @@ def claim(driver):
     driver.implicitly_wait(60 * 20)
 
     # 창 닫힌 후 submit 버튼 누르기    
-    driver.find_element_by_name("speichern").click()
+    driver.find_element(by=By.NAME, value="speichern").click()
     waitLoading()
 
     # 완료
 
 def receipts(driver, row):
     # 좌측 receipts 버튼 클릭
-    driver.find_element_by_xpath('/html/body/table/tbody/tr[3]/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[13]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a').click()
+    driver.find_element(by=By.XPATH, value='/html/body/table/tbody/tr[3]/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[13]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a').click()
     waitLoading()
 
     # new 버튼 클릭
-    driver.find_element_by_xpath('//*[@id="mainpart"]/table[1]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[1]/tbody/tr/td[2]/a').click()
+    driver.find_element(by=By.XPATH, value='//*[@id="mainpart"]/table[1]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[1]/tbody/tr/td[2]/a').click()
     waitLoading()
 
     # type of receipt
-    select = Select(driver.find_element_by_name("field_bel"))
+    select = Select(driver.find_element(by=By.NAME, value="field_bel"))
     select.select_by_value("RK")
     waitLoading()
 
     # involved party
-    involvedParty = driver.find_element_by_name("field_belansprse")
+    involvedParty = driver.find_element(by=By.NAME, value="field_belansprse")
     involvedParty.send_keys("Mercedes-Benz Korea")
     involvedParty.send_keys(Keys.ENTER)
     
@@ -213,7 +213,7 @@ def receipts(driver, row):
 
     # + 버튼 클릭
     driver.implicitly_wait(10)
-    driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[1]/td[1]/input").click()
+    driver.find_element(by=By.XPATH, value="/html/body/table[2]/tbody/tr[1]/td[1]/input").click()
 
     # 창 닫혔는지 검사
     while True:
@@ -227,7 +227,7 @@ def receipts(driver, row):
     time.sleep(2)
     
     # receipt number
-    driver.find_element_by_name("field_belref").send_keys(row["Repair No."])
+    driver.find_element(by=By.NAME, value="field_belref").send_keys(row["Repair No."])
     time.sleep(0.5)
 
     # date of receipt
@@ -235,59 +235,59 @@ def receipts(driver, row):
     receiptMonth = row["Closing Date"][5:7]
     receiptDay = row["Closing Date"][-2:]
 
-    driver.find_element_by_name("subfield_beldat_day").send_keys(receiptDay)
+    driver.find_element(by=By.NAME, value="subfield_beldat_day").send_keys(receiptDay)
     time.sleep(0.5)
-    driver.find_element_by_name("subfield_beldat_month").send_keys(receiptMonth)
+    driver.find_element(by=By.NAME, value="subfield_beldat_month").send_keys(receiptMonth)
     time.sleep(0.5)
-    driver.find_element_by_name("subfield_beldat_year").send_keys(receiptYear)
+    driver.find_element(by=By.NAME, value="subfield_beldat_year").send_keys(receiptYear)
     time.sleep(0.5)
 
     # tax key
-    taxKey = Select(driver.find_element_by_name("field_belstschl"))
+    taxKey = Select(driver.find_element(by=By.NAME, value="field_belstschl"))
     taxKey.select_by_value("100")
     time.sleep(1)
 
     # amount on receipt nett KRW -> 한 개만 입력하면 나머지는 자동빵
-    driver.find_element_by_name("field_betrag_bwhg").send_keys(row["Sub Total"])
+    driver.find_element(by=By.NAME, value="field_betrag_bwhg").send_keys(row["Sub Total"])
     waitLoading()
 
     # Submit 버튼 클릭
     driver.implicitly_wait(60 * 20)
-    driver.find_element_by_name("bt_speichern").click()
+    driver.find_element(by=By.NAME, value="bt_speichern").click()
     waitLoading()
 
     # >> 버튼 클릭
-    driver.find_element_by_xpath('//*[@id="mainpart"]/form/table/tbody/tr[3]/td[6]/a[4]/img').click()
+    driver.find_element(by=By.XPATH, value='//*[@id="mainpart"]/form/table/tbody/tr[3]/td[6]/a[4]/img').click()
 
     # type of procedure
-    typeOfProcedure = Select(driver.find_element_by_name("field_atyp"))
+    typeOfProcedure = Select(driver.find_element(by=By.NAME, value="field_atyp"))
     typeOfProcedure.select_by_value("VR")
     waitLoading()
 
     # new claim status broker/ins.
-    typeOfProcedure = Select(driver.find_element_by_name("field_sst"))
+    typeOfProcedure = Select(driver.find_element(by=By.NAME, value="field_sst"))
     typeOfProcedure.select_by_value("G")
     waitLoading()
 
     # delete reserves
-    driver.find_element_by_name("field_reskz").click()
+    driver.find_element(by=By.NAME, value="field_reskz").click()
     time.sleep(1)
 
     # submit 버튼 클릭
-    driver.find_element_by_name("bt_speichern").click()
+    driver.find_element(by=By.NAME, value="bt_speichern").click()
     waitLoading()
 
 def status(driver):
     # 좌측 status 버튼 클릭
-    driver.find_element_by_xpath("/html/body/table/tbody/tr[3]/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[18]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a").click()
+    driver.find_element(by=By.XPATH, value="/html/body/table/tbody/tr[3]/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[18]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a").click()
     waitLoading()
 
     # status
-    typeOfProcedure = Select(driver.find_element_by_name("field_sst"))
+    typeOfProcedure = Select(driver.find_element(by=By.NAME, value="field_sst"))
     typeOfProcedure.select_by_value("B")
 
     # submit
-    driver.find_element_by_name("Abschicken").click()
+    driver.find_element(by=By.NAME, value="Abschicken").click()
     waitLoading()
 # from timer import *
 import openpyxl
@@ -343,7 +343,8 @@ def login(driver, id, password):
 
 def clickClaim(driver):
     # claim 버튼 클릭
-    driver.find_element(by=By.XPATH, value='/html/body/table/tbody/tr[1]/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[1]/tbody/tr/td[1]/table/tbody/tr/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a').click()
+    # driver.find_element(by=By.XPATH, value='/html/body/table/tbody/tr[1]/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[1]/tbody/tr/td[1]/table/tbody/tr/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a').click()
+    driver.find_element(by=By.LINK_TEXT, value="CLAIM").click()
 
 def uploadFileNumCheck(fileList):
 
@@ -419,7 +420,7 @@ def checkCID(row):
 # Vehicle Logistics 입력한 경우 query로 찾아가기
 def query(driver, row):
     driver.implicitly_wait(3)
-    driver.find_element(by=By.LINK_TEXT, value="query").click() # query 버튼 클릭
+    driver.find_element(by=By.LINK_TEXT, value="QUERY").click() # query 버튼 클릭
     waitLoading()
 
     vinForm = driver.find_element(by=By.NAME, value="field_akrefitem")
@@ -451,7 +452,7 @@ def query(driver, row):
 
 def getCid(file_name, driver, row):
     # 텍스트 클릭
-    line = driver.find_element(by=By.XPATH, value='//*[@id="show_header_reference"]/table/tbody/tr/td/b').get_attribute('innerText')
+    line = driver.find_element(by=By.XPATH, value='//*[@id="show_header_reference"]/table[1]/tbody/tr/td[1]/div').get_attribute('innerText')
     line = line.strip()
 
     # cid 값 변수 저장

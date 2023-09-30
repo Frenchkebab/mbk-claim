@@ -7,15 +7,15 @@ from email import policy
 from email.parser import BytesParser
 from glob import glob
 
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait as wait
-import datetime
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import Select
-from selenium.webdriver.common.by import By
+# from selenium import webdriver
+# from selenium.webdriver.common.by import By
+# from selenium.webdriver.support.ui import WebDriverWait
+# from selenium.webdriver.support import expected_conditions as EC
+# from selenium.webdriver.support.ui import WebDriverWait as wait
+# import datetime
+# from selenium.webdriver.common.keys import Keys
+# from selenium.webdriver.support.ui import Select
+# from selenium.webdriver.common.by import By
 
 def attributeWrite(file_name):
     

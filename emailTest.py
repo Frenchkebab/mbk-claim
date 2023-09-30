@@ -18,5 +18,5 @@ for file in file_list:
 
 # for file in emlFiles:
 #     with open(file, 'rb') as fp:
-#         print(fp.read())
+#         print(fp.read())``
 #         input('pause:')
