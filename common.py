@@ -21,23 +21,25 @@ def toClaimX(driver):
     driver.implicitly_wait(60 * 20)
     
 
-# def login(driver, id, password):
-#     # id 입력
-#     driver.find_element(by=By.XPATH, value="/html/body/table/tbody/tr[3]/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/form/table/tbody/tr[1]/td[2]/input").send_keys(id)
-#     time.sleep(0.5)
+def login(driver, id, password):
+    print("id 입력")
+    try:
+        # id 입력
+        idForm = driver.find_element(by=By.XPATH, value='//*[@id="center_table"]/table/tbody/tr/td/form/table/tbody/tr[2]/td[2]/input')
+        idForm.send_keys(Keys.ENTER)
+        idForm.send_keys(id)
+        time.sleep(0.5)
 
-#     # password 입력
-#     driver.find_element(by=By.XPATH, value="/html/body/table/tbody/tr[3]/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/form/table/tbody/tr[2]/td[2]/input").send_keys(password)
+        # password 입력
+        pwForm = driver.find_element(by=By.XPATH, value='//*[@id="center_table"]/table/tbody/tr/td/form/table/tbody/tr[5]/td[2]/input')
+        idForm.send_keys(Keys.ENTER)
+        idForm.send_keys(password)
+        
+        # 로그인 버튼 클릭
+        driver.find_element(by=By.XPATH, value="/html/body/table/tbody/tr[3]/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/form/table/tbody/tr[3]/td/input").click()
     
-#     # 로그인 버튼 클릭
-#     driver.find_element(by=By.XPATH, value="/html/body/table/tbody/tr[3]/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/form/table/tbody/tr[3]/td/input").click()
-
-#     # 문 버튼이 나타나면 클릭, 없으면 그냥 패스
-#     try:
-#         driver.find_element(by=By.XPATH, value="/html/body/table/tbody/tr[3]/td[3]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/a[1]/img").click()
-
-#     except:
-#         pass
+    except:
+        return
 
 def clickClaim(driver):
     # claim 버튼 클릭
@@ -423,10 +425,12 @@ def query(driver, row):
     driver.find_element(by=By.LINK_TEXT, value="QUERY").click() # query 버튼 클릭
     waitLoading()
 
+    driver.implicitly_wait(3)
     vinForm = driver.find_element(by=By.NAME, value="field_akrefitem")
     vinForm.clear()
-    time.sleep(0.5)
+    time.sleep(1)
 
+    driver.implicitly_wait(3)
     cidForm = driver.find_element(by=By.NAME, value="field_aksiditem")
     cidForm.clear()
     time.sleep(1)
@@ -471,7 +475,8 @@ def getCid(file_name, driver, row):
     wb.save(f"./upload/{file_name}")
     wb.close()
 
-def uploadArchive(driver,logFile, fileList, selectionList):
+def uploadArchive(driver, logFile, fileList, selectionList):
+    print(fileList)
     div = 1
     for i in range(0, 7):
         for file in fileList[i]:

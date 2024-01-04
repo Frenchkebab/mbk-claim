@@ -22,7 +22,7 @@ from common import *
 def VehicleLogistics(driver, file_name, row):
     # vehicle-logistics로 이동
     driver.implicitly_wait(5)
-    driver.find_element(by=By.LINK_TEXT, value="Vehicle-Logistics").click()
+    driver.find_element(by=By.XPATH, value='//*[@id="leftmenu_table"]/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[2]/tbody/tr/td/a').click()
     
     # 페이지 로딩 됐는지 검사
     while True:
@@ -264,7 +264,7 @@ def archive(driver, logFile, row, archiveError = False):
 
     # 파일 버튼 클릭
     # driver.find_element(by=By.XPATH, value='//*[@id="mainpart"]/table[4]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/img').click()
-    wait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="mainpart"]/table[3]/tbody/tr/td/table/tbody/tr/td/img'))).click()
+    wait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="mainpart"]/table[2]/tbody/tr/td/table/tbody/tr/td/img'))).click()
     waitLoading()
 
     # 팝업 창으로
@@ -287,6 +287,7 @@ def archive(driver, logFile, row, archiveError = False):
     fClaimSummary = searchFileName("CLAIM SUMMARY", row)
     sClaimSummary = "Notification of the claim"
 
+
     fEmail = searchEmail(row)
     sEmail = "Incoming correspondence from claimant"
 
@@ -298,7 +299,6 @@ def archive(driver, logFile, row, archiveError = False):
 
     # 실제 업로드 로직
     uploadArchive(driver, logFile, fileList, selectionList)
-
 
     # 파악된 파일 개수
     # uploadFileNum = uploadFileNumCheck(fileList)

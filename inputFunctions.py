@@ -112,7 +112,7 @@ def searchFileName(dirName, row):
     else:
         result = []
         for file in fileList:
-            if file.startswith(row["VIN No."]):
+            if row["VIN No."] in file:
                 result.append(f"{dirAbsPath}\\{file}")
         
     return result
@@ -152,10 +152,19 @@ def searchEmail(row):
     result = []
 
     for file in file_list:
-        with open(file, 'rb') as fp:
-            msg = BytesParser(policy=policy.default).parse(fp)
-            txt = msg.get_body(preferencelist=('plain')).get_content()
-            if txt.find(row["VIN No."]) > -1:
-                result.append(file)
-    
+        if row["VIN No."] in file:
+            result.append(file)
+
+        else:
+            with open(file, 'rb') as fp:
+                msg = BytesParser(policy=policy.default).parse(fp)
+                txt = ""
+                try: 
+                    txt = msg.get_body(preferencelist=('plain')).as_string()
+                except:
+                    txt = msg.get_body(preferencelist=('plain', 'html')).get_content()
+
+                if txt.find(row["VIN No."]) > -1:
+                    result.append(file)
+
     return result

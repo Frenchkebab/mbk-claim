@@ -9,6 +9,9 @@ import datetime
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
+
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service
 # import time
 # import openpyxl
 
@@ -56,15 +59,21 @@ dataArr =inputFunctions.dfToDictArr(df, start_idx, last_idx)
 # 크롬 창 켜기
 options = webdriver.ChromeOptions()
 options.add_experimental_option("excludeSwitches", ["enable-logging"])
-driver = webdriver.Chrome(options=options)
+# driver = webdriver.Chrome(options=options)
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+
+
 
 # claimx.com 으로 이동
 common.toClaimX(driver)
 
-
+# [NO REPLY] New claim with ID 148588 on VIN W1K6F2DB3RA248806  Neue Schadenmeldung mit Nummer 148588 fr VIN W1K6F2DB3RA248806 .eml
+# [NO REPLY] New claim with ID 148588 on VIN W1K6F2DB3RA248806  Neue Schadenmeldung mit Nummer 148588 für VIN W1K6F2DB3RA248806 .eml
 # 로그인
-input("Login and press enter: ")
+# print(id, password)
 # common.login(driver, id, password)
+# print(id, password)
+input("로그인 후 Enter 입력: ")
 
 # Archive 업로드 중 문제가 생기는 경우 True
 archiveError = False
