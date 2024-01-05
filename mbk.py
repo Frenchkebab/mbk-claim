@@ -264,7 +264,7 @@ def archive(driver, logFile, row, archiveError = False):
 
     # 파일 버튼 클릭
     # driver.find_element(by=By.XPATH, value='//*[@id="mainpart"]/table[4]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/img').click()
-    wait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="mainpart"]/table[2]/tbody/tr/td/table/tbody/tr/td/img'))).click()
+    wait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="mainpart"]/table[6]/tbody/tr/td/table/tbody/tr/td/img'))).click()
     waitLoading()
 
     # 팝업 창으로

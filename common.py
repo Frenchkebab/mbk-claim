@@ -111,7 +111,7 @@ def archive(driver, logFile, row):
     waitLoading()
 
     # 파일 버튼 클릭
-    driver.find_element(by=By.XPATH, value='//*[@id="mainpart"]/table[5]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/img').click()
+    driver.find_element(by=By.XPATH, value='//*[@id="mainpart"]/table[3]/tbody/tr/td/table/tbody/tr/td/img').click()
     waitLoading()
 
     # 팝업 창으로
@@ -440,6 +440,10 @@ def query(driver, row):
     #     driver.find_element(by=By.XPATH, value="/html/body/div[2]/div[1]/button/span[1]").click()
     # except:
     #     pass
+    
+    select = Select(driver.find_element(by=By.NAME, value="field_aksidtyp"))
+    select.select_by_value("sm.sid")
+    time.sleep(1)
 
     cidForm.send_keys(str(row["CID"]))
     time.sleep(1)
