@@ -107,14 +107,40 @@ def writeLog(logFile, msg):
 
 def archive(driver, logFile, row):
     # archive 버튼 클릭
+    print("archive 클릭")
     driver.find_element_by_link_text("archive").click()
-    waitLoading()
+    print("archive 클릭 완료")
+    time.sleep(2)
+
+    cid = str(row["CID"])
+    archiveUrl = f'https://www.claimx.de/claimx/members/lib/archiv/upload?ukz={id}&sid={cid}&bereich=S&man2=&mname2=&anman=&vonman=&saip=true'
+
+    # waitLoading()
 
     # 파일 버튼 클릭
-    driver.find_element(by=By.XPATH, value='//*[@id="mainpart"]/table[3]/tbody/tr/td/table/tbody/tr/td/img').click()
-    waitLoading()
+    # try:
+    #     try:
+    #         driver.find_element(by=By.XPATH, value='//*[@id="mainpart"]/table[5]/tbody/tr/td/table/tbody/tr/td/img').click()
+    #     except:
+    #         driver.find_element(by=By.XPATH, value='//*[@id="mainpart"]/table[2]/tbody/tr/td/table/tbody/tr/td/img').click()
+    # except:
+    #     print('Archive 업로드 버튼 클릭 실패')
+
+    # try:
+    #     fileBtn = WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="mainpart"]/table[2]/tbody/tr/td/table/tbody/tr/td/img')))
+    #     fileBtn.click()
+    # except:
+    #     fileBtn = WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="mainpart"]/table[5]/tbody/tr/td/table/tbody/tr/td/img')))
+    #     fileBtn.click()
+        
+
+    # waitLoading()
 
     # 팝업 창으로
+    print("before execute_script")
+    driver.execute__script(f"window.open('{archiveUrl};")
+    time.sleep(2)
+
     driver.switch_to.window(driver.window_handles[1])
     
     fRO = searchFileName("RO", row)
@@ -450,7 +476,9 @@ def query(driver, row):
     cidForm.send_keys(Keys.ENTER)
 
     driver.implicitly_wait(30)
+    print("query cid 입력 완료")
     wait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="mainpart"]/form/table/tbody/tr[2]'))).click()
+    print("query 클릭 완료")
     # tdTag = driver.find_element(by=By.XPATH, value='//*[@id="mainpart"]/form/table/tbody/tr[2]')
     # tdTag.find_element(by=By.TAG_NAME, value='')
     # uploadBtn.click()

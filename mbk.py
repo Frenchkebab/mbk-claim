@@ -21,9 +21,11 @@ from common import *
 
 def VehicleLogistics(driver, file_name, row):
     # vehicle-logistics로 이동
-    driver.implicitly_wait(5)
+    time.sleep(2)
     driver.find_element(by=By.XPATH, value='//*[@id="leftmenu_table"]/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[2]/tbody/tr/td/a').click()
+    time.sleep(2)
     
+
     # 페이지 로딩 됐는지 검사
     while True:
         try: 
@@ -228,7 +230,6 @@ def VehicleLogistics(driver, file_name, row):
         else:
             dCode = str(row[f"Damage Code{i}"])
             
-        print(f"Damage Code{i}: {dCode}")
         
         # 없으면 반복 중지
         if dCode == "nan":
@@ -264,8 +265,21 @@ def archive(driver, logFile, row, archiveError = False):
 
     # 파일 버튼 클릭
     # driver.find_element(by=By.XPATH, value='//*[@id="mainpart"]/table[4]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td/img').click()
-    wait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="mainpart"]/table[6]/tbody/tr/td/table/tbody/tr/td/img'))).click()
-    waitLoading()
+       # 파일 버튼 클릭
+    try:
+        try:
+            driver.find_element(by=By.XPATH, value='//*[@id="mainpart"]/table[5]/tbody/tr/td/table/tbody/tr/td/img').click()
+        except:
+            driver.find_element(by=By.XPATH, value='//*[@id="mainpart"]/table[2]/tbody/tr/td/table/tbody/tr/td/img').click()
+    except:
+        print('Archive 업로드 버튼 클릭 실패')
+
+    # try:
+    #     fileBtn = WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="mainpart"]/table[2]/tbody/tr/td/table/tbody/tr/td/img')))
+    #     fileBtn.click()
+    # except:
+    #     fileBtn = WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="mainpart"]/table[5]/tbody/tr/td/table/tbody/tr/td/img')))
+    #     fileBtn.click()
 
     # 팝업 창으로
     driver.switch_to.window(driver.window_handles[1])
