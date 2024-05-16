@@ -6,6 +6,7 @@ import openpyxl
 from email import policy
 from email.parser import BytesParser
 from glob import glob
+import base64
 
 # from selenium import webdriver
 # from selenium.webdriver.common.by import By
@@ -143,6 +144,7 @@ def isHyundaiGlovis(dirName, row):
     
 
 
+import re 
 
 def searchEmail(row):
     # 해당 VIN No.와 동일한 EMAIL파일의 경로를 찾는다.
@@ -159,12 +161,40 @@ def searchEmail(row):
             with open(file, 'rb') as fp:
                 msg = BytesParser(policy=policy.default).parse(fp)
                 txt = ""
+                
+                # 이메일 제목 추출
+                subject = msg['subject']
+                
+                # 제목에 VIN No. 포함 여부 확인
+                if subject.find(row["VIN No."]) > -1:
+                    print(f'제목에 VIN No. 포함 ({row["VIN No."]}):',  subject)
+                    result.append(file)
+                    continue
+                
+                # 본문 텍스트 추출
                 try: 
                     txt = msg.get_body(preferencelist=('plain')).as_string()
                 except:
                     txt = msg.get_body(preferencelist=('plain', 'html')).get_content()
+                    
+                # 헤더 부분 제거 (정규 표현식 사용)
+                pattern = re.compile(r'^Content-Type:.*?\n^Content-Transfer-Encoding:.*?\n\n', re.DOTALL | re.MULTILINE)
+                base64_encoded_str = pattern.sub('', txt).strip()
 
-                if txt.find(row["VIN No."]) > -1:
+                # 여러 줄로 되어 있는 Base64 인코딩 본문을 한 줄로 합치기
+                base64_encoded_str = ''.join(base64_encoded_str.splitlines())
+                
+                # Base64 디코딩
+                try:
+                    decoded_bytes = base64.b64decode(base64_encoded_str)
+                    decoded_str = decoded_bytes.decode('utf-8')  # 또는 'ascii'로 디코딩 가능
+                except (base64.binascii.Error, UnicodeDecodeError) as e:
+                    print("디코딩 중 오류 발생:", str(e))
+                    print("바이너리 데이터로 처리해야 할 가능성이 있습니다.")
+
+                # 본문에 VIN No. 포함 여부 확인
+                if decoded_str.find(row["VIN No."]) > -1:
+                    print(f'본문에 VIN No. 포함 ({row["VIN No."]}): ', decoded_str)
                     result.append(file)
 
     return result
