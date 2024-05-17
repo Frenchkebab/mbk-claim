@@ -137,8 +137,9 @@ if work_type == "mbk":
                     logFile.write("Archive부터 입력 시작\n")
                     print("Archive부터 입력 시작")
                     mbk.query(driver, row)
-
-                    mbk.archive(driver,logFile, row)
+                    print("query 완료")
+                    print("Archive 시작")
+                    mbk.archive(driver, logFile, row)
                     common.memo(file_name, row, "Archive done")
                     logFile.write("Archive 완료\n")
                     print("Archive 완료")
