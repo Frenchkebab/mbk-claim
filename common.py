@@ -508,7 +508,7 @@ def getCid(file_name, driver, row):
     wb.close()
 
 def uploadArchive(driver, logFile, fileList, selectionList):
-    print(fileList)
+    
     div = 1
     for i in range(0, 7):
         for file in fileList[i]:

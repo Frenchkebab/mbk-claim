@@ -103,6 +103,7 @@ def VehicleLogistics(driver, file_name, row):
     try:
         driver.find_element(by=By.XPATH, value='//*[@id="mainpart"]/form/table[2]/tbody/tr[7]/td/div/table[1]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr/td')
         memo(file_name, row, "further damage error")
+        print("Further Damage Error (이미 입력된 자료)")
         return False
     except:
         pass
