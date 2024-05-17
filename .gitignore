@@ -5,3 +5,4 @@ result/*
 upload/*
 dist.zip
 main.spec
+*.zip
