@@ -167,7 +167,6 @@ def searchEmail(row):
                 
                 # 제목에 VIN No. 포함 여부 확인
                 if subject.find(row["VIN No."]) > -1:
-                    print(f'제목에 VIN No. 포함 ({row["VIN No."]}):',  subject)
                     result.append(file)
                     continue
                 

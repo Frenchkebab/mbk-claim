@@ -78,6 +78,9 @@ input("로그인 후 Enter 입력: ")
 # Archive 업로드 중 문제가 생기는 경우 True
 archiveError = False
 
+# > 토글 버튼 한번만 클릭
+driver.find_element(by=By.XPATH, value='//*[@id="sidebarToggle"]').click()
+
 # 작업 종류 선택
 if work_type == "mbk":
     for row in dataArr:
@@ -90,12 +93,10 @@ if work_type == "mbk":
             # 업로드 에러 flag 초기화
             archiveError = False
 
-            #* claim 버튼 클릭
-            common.clickClaim(driver)
 
             #! CID가 없는 경우 (입력되지 않은 자료)
             if common.checkCID(row) == False:
-
+                
                 result = mbk.VehicleLogistics(driver, file_name, row)
                 if result:
                     # 정상적으로 완료되면 CID를 저장

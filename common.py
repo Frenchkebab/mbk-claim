@@ -448,7 +448,9 @@ def checkCID(row):
 # Vehicle Logistics 입력한 경우 query로 찾아가기
 def query(driver, row):
     driver.implicitly_wait(3)
-    driver.find_element(by=By.LINK_TEXT, value="QUERY").click() # query 버튼 클릭
+    # driver.find_element(by=By.LINK_TEXT, value="QUERY").click() # query 버튼 클릭
+    driver.find_element(by=By.ID, value="query").click()
+
     waitLoading()
 
     driver.implicitly_wait(3)

@@ -22,7 +22,7 @@ from common import *
 def VehicleLogistics(driver, file_name, row):
     # vehicle-logistics로 이동
     time.sleep(2)
-    driver.find_element(by=By.XPATH, value='//*[@id="leftmenu_table"]/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[2]/tbody/tr/td/a').click()
+    driver.find_element(by=By.XPATH, value='//*[@id="sidebarList"]/li[2]/a').click()
     time.sleep(2)
     
 
