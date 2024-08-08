@@ -60,7 +60,14 @@ dataArr =inputFunctions.dfToDictArr(df, start_idx, last_idx)
 options = webdriver.ChromeOptions()
 options.add_experimental_option("excludeSwitches", ["enable-logging"])
 # driver = webdriver.Chrome(options=options)
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+# release = "https://chromedriver.storage.googleapis.com/LATEST_RELEASE"
+# version = requests.get(release).text
+# driver = webdriver.Chrome(service=Service(ChromeDriverManager(version=v).install()), options=options)
+# driver = webdriver.Chrome(service=Service(ChromeDriverManager(driver_version="127.0.6533.99").install()), options=options)
+driver_path = ChromeDriverManager().install()
+correct_driver_path = os.path.join(os.path.dirname(driver_path), "chromedriver.exe")
+driver = webdriver.Chrome(service=Service(executable_path=correct_driver_path), options=options)
+
 
 
 
