@@ -390,7 +390,8 @@ def receipts(driver, row):
 
     # new 버튼 클릭
     # driver.find_element(by=By.XPATH, value='//*[@id="mainpart"]/table[1]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table[1]/tbody/tr/td[2]/a').click()
-    driver.find_element(by=By.LINK_TEXT, value="new").click()
+    # //*[@id="btn-secondary"]
+    driver.find_element(by=By.ID, value="btn-secondary").click()
     waitLoading()
 
     # type of receipt

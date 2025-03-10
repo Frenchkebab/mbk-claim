@@ -1,8 +1,10 @@
 __pycache__
 build
 dist
-result/*
-upload/*
+result/
+upload/
 dist.zip
 main.spec
 *.zip
+
+settings/
